@@ -129,6 +129,8 @@ android {
     }
 
     defaultConfig {
+        missingDimensionStrategy 'react-native-camera', 'general'
+        
         applicationId "com.pic_to_text_frontend"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react';
 import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import CameraRoll from "@react-native-community/cameraroll";
 
 const PendingView = () => (
   <View
@@ -23,7 +24,7 @@ class Camera extends PureComponent {
         <RNCamera
           style={styles.preview}
           type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.on}
+          flashMode={RNCamera.Constants.FlashMode.auto}
           captureAudio={false}
           androidCameraPermissionOptions={{
             title: 'Permission to use camera',
@@ -31,14 +32,8 @@ class Camera extends PureComponent {
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
           }}
-          androidRecordAudioPermissionOptions={{
-            title: 'Permission to use audio recording',
-            message: 'We need your permission to use your audio',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
         >
-          {({ camera, status, recordAudioPermissionStatus }) => {
+          {({ camera, status }) => {
             if (status !== 'READY') return <PendingView />;
             return (
               <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
@@ -52,12 +47,12 @@ class Camera extends PureComponent {
       </View>
     );
   }
-
+ 
   takePicture = async function(camera) {
     const options = { quality: 0.5, base64: true };
     const data = await camera.takePictureAsync(options);
-    //  eslint-disable-next-line
-    console.log(data.uri);
+    CameraRoll.save(data.uri,'photo')
+    // console.log(data.uri);
   };
 }
 
@@ -75,7 +70,7 @@ const styles = StyleSheet.create({
   capture: {
     flex: 0,
     backgroundColor: '#fff',
-    borderRadius: 5,
+    borderRadius: 100,
     padding: 15,
     paddingHorizontal: 20,
     alignSelf: 'center',

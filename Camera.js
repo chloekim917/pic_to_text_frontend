@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react';
 import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import CameraRoll from "@react-native-community/cameraroll";
+import firebase from '@react-native-firebase/app';
+import vision from '@react-native-firebase/ml-vision';
 
 const PendingView = () => (
   <View
@@ -49,10 +51,18 @@ class Camera extends PureComponent {
   }
  
   takePicture = async function(camera) {
-    const options = { quality: 0.5, base64: true };
+    const options = { quality: 1, base64: true };
     const data = await camera.takePictureAsync(options);
+
+    const processed = await vision().cloudDocumentTextRecognizerProcessImage(data.uri);
+    console.log('Found text in document: ', processed);
+  
+    processed.blocks.forEach(block => {
+      console.log('Found block with text: ', block.text);
+      console.log('Confidence in block: ', block.confidence);
+      console.log('Languages found in block: ', block.recognizedLanguages);
+    });
     CameraRoll.save(data.uri,'photo')
-    // console.log(data.uri);
   };
 }
 

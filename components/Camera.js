@@ -54,14 +54,14 @@ class Camera extends PureComponent {
     const options = { quality: 1, base64: true };
     const data = await camera.takePictureAsync(options);
 
-    const processed = await vision().cloudDocumentTextRecognizerProcessImage(data.uri);
-    console.log('Found text in document: ', processed);
+    // const processed = await vision().cloudDocumentTextRecognizerProcessImage(data.uri);
+    // console.log('Found text in document: ', processed);
   
-    processed.blocks.forEach(block => {
-      console.log('Found block with text: ', block.text);
-      console.log('Confidence in block: ', block.confidence);
-      console.log('Languages found in block: ', block.recognizedLanguages);
-    });
+    // processed.blocks.forEach(block => {
+    //   console.log('Found block with text: ', block.text);
+    //   console.log('Confidence in block: ', block.confidence);
+    //   console.log('Languages found in block: ', block.recognizedLanguages);
+    // });
     CameraRoll.save(data.uri,'photo')
   };
 }

@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { Button, View, StyleSheet} from 'react-native';
-import Camera from './Camera'
+import Camera from '../components/Camera'
 
 
 function CameraContainer({ navigation }) {
     return (
       <View style={styles.container}>
           <Camera />
-        <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+        <Button title="Go to Home" onPress={() => navigation.navigate('UserHome')} />
         <Button title="Go back" onPress={() => navigation.goBack()} />
-        <Button
+        {/* <Button
           title="Go back to first screen in stack"
           onPress={() => navigation.popToTop()}
-        />
+        /> */}
       </View>
     );
   }

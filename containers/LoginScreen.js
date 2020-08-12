@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 
-function HomeScreen({ navigation }) {
+function LoginScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
+      <Text>Login Screen</Text>
       <Button
-        title="Go to Camera"
-        onPress={() => navigation.navigate('CameraContainer')}
+        title="Sign In"
+        onPress={() => navigation.navigate('NotebooksPage')}
       />
     </View>
   );
 }
 
-  export default HomeScreen
-
+  export default LoginScreen

@@ -9,6 +9,8 @@ import allReducers from './reducers';
 
 import LoginScreen from './containers/LoginScreen'
 import NotebooksPage from './containers/NotebooksPage'
+import Notebook from './components/Notebook'
+import NotesPage from './containers/NotesPage'
 import CameraContainer from './containers/CameraContainer'
 
 const store = createStore(allReducers, applyMiddleware(thunk));
@@ -21,6 +23,8 @@ function App() {
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="NotebooksPage" component={NotebooksPage} />
+          <Stack.Screen name="Notebook" component={Notebook} />
+          <Stack.Screen name="NotesPage" component={NotesPage} />
           <Stack.Screen name="CameraContainer" component={CameraContainer} />
         </Stack.Navigator>
       </Provider>

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import notebookReducers from './notebookReducers'
-// import notesReducer from './notesReducer'
+import noteReducers from './noteReducers'
 
 
 const allReducers = combineReducers({ 
 notebooks: notebookReducers,
-// notes: notesReducer
+notes: noteReducers
 })
 
 export default allReducers;

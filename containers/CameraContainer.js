@@ -7,7 +7,7 @@ function CameraContainer({ navigation }) {
     return (
       <View style={styles.container}>
           <Camera />
-        <Button title="Go to Home" onPress={() => navigation.navigate('UserHome')} />
+        <Button title="Go to Home" onPress={() => navigation.navigate('NotebooksPage')} />
         <Button title="Go back" onPress={() => navigation.goBack()} />
         {/* <Button
           title="Go back to first screen in stack"
@@ -16,6 +16,7 @@ function CameraContainer({ navigation }) {
       </View>
     );
   }
+
       
     const styles = StyleSheet.create({
         container: {

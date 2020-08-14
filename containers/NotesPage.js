@@ -1,40 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import {ScrollView, View, Text, StyleSheet, TextInput, Button, FlatList} from 'react-native';
-import Note from '../components/Note'
+import Notes from '../components/Notes'
 import { connect } from 'react-redux'
-import * as act from '../actions'
+import { fetchNotesAction } from '../actions'
 
-class NotesPage extends React.Component {  
+const NotesPage=(props)=>{  
+  const navigation = props.navigation
 
-  componentDidMount(){
-    this.fetchNotes()
-  }
+  useEffect(() => {
+    props.fetchNotes()
+    // console.log(props)
+  }, [])
 
-  fetchNotes = () => {
-    fetch('http://localhost:3000/api/v1/notes')
-    .then(resp => resp.json())
-    .then(notes => this.props.renderNotes(notes))
-  }
-
-  render(){
-      
     return(
-      <View>
-         {this.props.notes.notes.map(note => <Note key={note.id} {...note}/>)}
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        {/* {props.notes.notes.filter(note => note.notebook_id === props.currentNotebook).map(note => 
+          <Text>{note.title}</Text>)} */}
+
+         {props.notes.filter(note => note.notebook_id === props.currentNotebook).map(note =>  <Notes key={note.id} {...note}/>)}
       </View>
     )        
-  }
 }
 
 const mapStateToProps = state => {
   return {       
-      notes: state.notes
+      notes: state.notes,
+      currentNotebook: state.currentNotebook
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      renderNotes: (notes) => dispatch(act.renderNotes(notes))
+    fetchNotes: () => dispatch(fetchNotesAction())
   }
 }
 

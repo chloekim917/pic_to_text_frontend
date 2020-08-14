@@ -1,12 +1,15 @@
 // import * as types from '../actions';
 const initialState = {
-    notebooks: []
+    notebooks: [],
+    currentNotebook: 1
 }
 
  const notebookReducers = (prevState=initialState, action) => {
     switch(action.type){
-        case 'RENDER_NOTEBOOKS':
-            return {...prevState, notebooks: action.payload.value}
+        case 'FETCH_NOTEBOOKS':
+            return {...prevState, notebooks: action.payload.notebooks}
+        case 'SELECT_NOTEBOOK':
+            return{...prevState, currentNotebook: action.payload.value}
 
         // case types.ADD_NOTEBOOK:
         //    // console.log(action.notebook)

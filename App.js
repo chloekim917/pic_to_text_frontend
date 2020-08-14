@@ -5,30 +5,32 @@ import { createStackNavigator } from '@react-navigation/stack';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import allReducers from './reducers';
+import reducer from './reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import LoginScreen from './containers/LoginScreen'
 import NotebooksPage from './containers/NotebooksPage'
-import Notebook from './components/Notebook'
 import NotesPage from './containers/NotesPage'
+import NoteDetailPage from './containers/NoteDetailPage'
 import CameraContainer from './containers/CameraContainer'
 
-const store = createStore(allReducers, applyMiddleware(thunk));
+// const store = createStore(allReducers, applyMiddleware(thunk));
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 const Stack = createStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Provider store={store}>
+    <Provider store={store}>
+      <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="NotebooksPage" component={NotebooksPage} />
-          <Stack.Screen name="Notebook" component={Notebook} />
           <Stack.Screen name="NotesPage" component={NotesPage} />
+          <Stack.Screen name="NoteDetailPage" component={NoteDetailPage} />
           <Stack.Screen name="CameraContainer" component={CameraContainer} />
         </Stack.Navigator>
-      </Provider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

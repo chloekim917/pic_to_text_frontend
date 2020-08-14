@@ -4,7 +4,6 @@ import { Button, View, Text } from 'react-native';
 function LoginScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Login Screen</Text>
       <Button
         title="Sign In"
         onPress={() => navigation.navigate('NotebooksPage')}

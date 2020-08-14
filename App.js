@@ -13,6 +13,7 @@ import NotebooksPage from './containers/NotebooksPage'
 import NotesPage from './containers/NotesPage'
 import NoteDetailPage from './containers/NoteDetailPage'
 import CameraContainer from './containers/CameraContainer'
+import NewNotePage from './containers/NewNotePage'
 
 // const store = createStore(allReducers, applyMiddleware(thunk));
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
@@ -28,6 +29,7 @@ function App() {
           <Stack.Screen name="NotesPage" component={NotesPage} />
           <Stack.Screen name="NoteDetailPage" component={NoteDetailPage} />
           <Stack.Screen name="CameraContainer" component={CameraContainer} />
+          <Stack.Screen name="NewNotePage" component={NewNotePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

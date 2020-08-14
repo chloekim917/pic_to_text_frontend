@@ -4,25 +4,24 @@ import Camera from '../components/Camera'
 
 
 function CameraContainer({ navigation }) {
-    return (
-      <View style={styles.container}>
-          <Camera />
-        <Button title="Go to Home" onPress={() => navigation.navigate('NotebooksPage')} />
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-        {/* <Button
-          title="Go back to first screen in stack"
-          onPress={() => navigation.popToTop()}
-        /> */}
-      </View>
-    );
-  }
-
+  return (
+    <View style={styles.container}>
+        <Camera />
+      <Button title="Go to Home" onPress={() => navigation.navigate('NotebooksPage')} />
+      <Button title="Go back" onPress={() => navigation.goBack()} />
+      {/* <Button
+        title="Go back to first screen in stack"
+        onPress={() => navigation.popToTop()}
+      /> */}
+    </View>
+  );
+}
       
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1
-        }
-    })
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
       
-    export default CameraContainer;
+export default CameraContainer;
       

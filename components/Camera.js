@@ -6,7 +6,7 @@ import CameraRoll from "@react-native-community/cameraroll";
 import firebase from '@react-native-firebase/app';
 import vision from '@react-native-firebase/ml-vision';
 import { connect } from 'react-redux'
-import {setPathAction} from '../actions'
+import {setImagePathAction} from '../actions'
 import {setExtractedAction} from '../actions'
 import {setConfidenceAction} from '../actions'
 import { useNavigation } from '@react-navigation/native'
@@ -30,12 +30,12 @@ const Camera=(props)=>{
   const CapturedView = () => (
     <>
       <Image
-        source={{ uri: props.path }}
+        source={{ uri: props.imagePath }}
         style={styles.preview}
       />
       <Text
         style={styles.cancel}
-        onPress={() => props.setPath(null)}
+        onPress={() => props.setImagePath(null)}
       >Discard</Text>
       <Text
         style={styles.extract}
@@ -75,11 +75,11 @@ const Camera=(props)=>{
     CameraRoll.save(data.uri,'photo')
     const picPath = data.uri
 
-    props.setPath(picPath);
+    props.setImagePath(picPath);
   };
 
   const handleExtract = async function(localPath){
-    const processed = await vision().cloudDocumentTextRecognizerProcessImage(props.path)
+    const processed = await vision().cloudDocumentTextRecognizerProcessImage(props.imagePath)
     const extractedText = processed.text
     
     props.setExtracted(extractedText)
@@ -92,7 +92,7 @@ const Camera=(props)=>{
 
   return (
     <View style={styles.container}>
-      {props.path ? <CapturedView/> : <CameraView/>}
+      {props.imagePath ? <CapturedView/> : <CameraView/>}
     </View>
   )
 }
@@ -134,27 +134,19 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: '600',
     fontSize: 17,
-  },
-  previews: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
   }
 })
 
 const mapStateToProps = state => {
   return {       
-    path: state.path,
+    imagePath: state.imagePath,
     extracted: state.extracted,
-    confidence: state.confidence
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      setPath: (picPath) => dispatch(setPathAction(picPath)),
+      setImagePath: (picPath) => dispatch(setImagePathAction(picPath)),
       setExtracted: (extractedText) => dispatch(setExtractedAction(extractedText)),
       setConfidence: (confidenceRate) => dispatch(setConfidenceAction(confidenceRate))
   }

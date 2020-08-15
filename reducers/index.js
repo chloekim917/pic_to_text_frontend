@@ -5,9 +5,10 @@ const initialState = {
     currentNotebook: 1,
     notes: [],
     currentNote: 1,
-    path: null,
+    imagePath: null,
     extracted: '',
-    confidence: ''
+    confidence: '',
+    // contentText: ''
 }
 
 
@@ -21,12 +22,14 @@ const reducer  = (prevState=initialState, action) => {
             return {...prevState, notebooks: action.payload.notebooks}
         case 'SELECT_NOTEBOOK':
             return{...prevState, currentNotebook: action.payload.value}
-        case 'SET_PATH':
-            return{...prevState, path: action.payload.value}
+        case 'SET_IMAGE_PATH':
+            return{...prevState, imagePath: action.payload.value}
         case 'SET_EXTRACTED':
             return{...prevState, extracted: action.payload.value}
         case 'SET_CONFIDENCE':
             return{...prevState, confidence: action.payload.value}
+        // case 'SET_CONTENT':
+        //     return{...prevState, contentText: action.payload.value}
         default:
             return prevState
     }

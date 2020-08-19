@@ -13,8 +13,8 @@ const Notes=({choose, title, id})=>{
   }
 
     return (
-      <TouchableOpacity onPress={() => handleNotePress()}>
-         <Text>{title}</Text>
+      <TouchableOpacity onPress={() => handleNotePress()} style={{flex: 1, flexDirection: "column", flexWrap: 'wrap'}}>
+         <Text style={{fontSize:20}}>{title}</Text>
       </TouchableOpacity>
     );
 }

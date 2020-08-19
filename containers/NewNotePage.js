@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {ScrollView, View, Text, StyleSheet, TextInput, Button, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
-// import AutoHeightImage from 'react-native-auto-height-image';
+import AutoHeightImage from 'react-native-auto-height-image';
 import {Picker} from '@react-native-community/picker';
 import { connect } from 'react-redux'
 import { setExtractedAction} from '../actions'
@@ -22,6 +22,7 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
           { title: title,
             content: extracted,
             notebook_id: currentNotebook,
+            image_path: imagePath
             // image: imageData,
             // file_name: imageData.uri.split("/")[imageData.uri.split("/").length - 1]
           }
@@ -54,15 +55,15 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
               <Picker.Item label={notebook.notebook_name} value={notebook.id} key={notebook.id} />
               )}
           </Picker>
-          {/* <Button
-                onPress={()=>translate}
-                title='Translate'
-            /> */}
           <TextInput
                 onChangeText={(title) => setTitle(title)}
                 value={title}
                 placeholder={"Add Title"}
                 style={styles.title}
+            />
+          <AutoHeightImage
+                source={{ uri: imagePath }}
+                width={300}
             />
             <TextInput 
                 multiline={true}
@@ -70,10 +71,6 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
                 value={extracted}
                 style={styles.text}
             />
-            {/* <AutoHeightImage
-                source={{ uri: imagePath }}
-                width={300}
-            /> */}
             <Button
                 onPress={()=>handleSubmit()}
                 title='Submit'

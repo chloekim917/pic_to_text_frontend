@@ -15,7 +15,7 @@ function LoginScreen({ navigation }) {
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Email..." 
+            placeholder="Id..." 
             placeholderTextColor="#003f5c"
             // onChangeText={text => this.setState({email:text})}
             />
@@ -32,8 +32,8 @@ function LoginScreen({ navigation }) {
         <TouchableOpacity>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText} onPress={() => navigation.navigate('NotebooksPage')}>LOGIN</Text>
+        <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('NotebooksPage')}>
+          <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.loginText}>Signup</Text>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   inputText:{
     height:50,
-    color:"white"
+    color:"black"
   },
   forgot:{
     color:"white",

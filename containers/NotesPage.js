@@ -14,8 +14,8 @@ const NotesPage=(props)=>{
   }, [])
 
     return(
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ScrollView>
+      <View style={{flexDirection:'row'}}>
+        <ScrollView style={{marginTop:70, marginLeft: 20, marginRight:20}}>
           {props.notes.filter(note => note.notebook_id === props.currentNotebook).map(note =>  <Notes key={note.id} {...note}/>)}
           <Button onPress={()=>navigation.navigate('NotebooksPage')} title='Back to All Notebooks'/>
         </ScrollView>

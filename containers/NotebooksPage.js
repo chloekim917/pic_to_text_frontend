@@ -39,8 +39,10 @@ const NotebooksPage=(props)=>{
   }
 
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ScrollView>
+      // <View 
+      // // style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+      // >
+        <ScrollView >
           <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => {Alert.alert("Modal has been closed.");}}>
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
@@ -52,6 +54,9 @@ const NotebooksPage=(props)=>{
                 <TouchableHighlight style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {handleAddNotebook()}}>
                   <Text style={styles.textStyle}>Submit</Text>
                 </TouchableHighlight>
+                <TouchableHighlight style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {setModalVisible(!modalVisible)}}>
+                  <Text style={styles.textStyle}>Cancel</Text>
+                </TouchableHighlight>
               </View>
             </View>
           </Modal>
@@ -61,7 +66,7 @@ const NotebooksPage=(props)=>{
           {props.notebooks.map(notebook => <Notebooks key={notebook.id} {...notebook}/>)} 
           <Button title="Camera" onPress={() => navigation.navigate('CameraContainer')}/>
         </ScrollView>
-      </View>
+      // </View>
     )        
 }
 
@@ -89,6 +94,7 @@ const styles = StyleSheet.create({
   },
   openButton: {
     backgroundColor: "#F194FF",
+    marginTop: 30,
     borderRadius: 20,
     padding: 10,
     elevation: 2

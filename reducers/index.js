@@ -6,7 +6,7 @@ const initialState = {
     notes: [],
     currentNote: null,
     imageData: null,
-    imageData: null,
+    imagePath: null,
     extracted: '',
     confidence: '',
     translated: '',

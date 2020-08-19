@@ -6,6 +6,7 @@ import CameraRoll from "@react-native-community/cameraroll";
 import firebase from '@react-native-firebase/app';
 import vision from '@react-native-firebase/ml-vision';
 import { connect } from 'react-redux'
+import {setImageDataAction} from '../actions'
 import {setImagePathAction} from '../actions'
 import {setExtractedAction} from '../actions'
 import {setConfidenceAction} from '../actions'
@@ -30,12 +31,12 @@ const Camera=(props)=>{
   const CapturedView = () => (
     <>
       <Image
-        source={{ uri: props.imagePath }}
+        source={{ uri: props.imageData.uri }}
         style={styles.preview}
       />
       <Text
         style={styles.cancel}
-        onPress={() => props.setImagePath(null)}
+        onPress={() => props.setImageData(null) && props.setImagePath(null)}
       >Discard</Text>
       <Text
         style={styles.extract}
@@ -73,8 +74,12 @@ const Camera=(props)=>{
     const data = await camera.takePictureAsync(options);
 
     CameraRoll.save(data.uri,'photo')
+    // console.log(data)
+    // console.log(data.uri.split("/")[data.uri.split("/").length - 1])
+    const pic = data
     const picPath = data.uri
 
+    props.setImageData(pic);
     props.setImagePath(picPath);
   };
 
@@ -92,7 +97,7 @@ const Camera=(props)=>{
 
   return (
     <View style={styles.container}>
-      {props.imagePath ? <CapturedView/> : <CameraView/>}
+      {props.imageData ? <CapturedView/> : <CameraView/>}
     </View>
   )
 }
@@ -139,6 +144,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {       
+    imageData: state.imageData,
     imagePath: state.imagePath,
     extracted: state.extracted,
   }
@@ -146,6 +152,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+      setImageData: (pic) => dispatch(setImageDataAction(pic)),
       setImagePath: (picPath) => dispatch(setImagePathAction(picPath)),
       setExtracted: (extractedText) => dispatch(setExtractedAction(extractedText)),
       setConfidence: (confidenceRate) => dispatch(setConfidenceAction(confidenceRate))

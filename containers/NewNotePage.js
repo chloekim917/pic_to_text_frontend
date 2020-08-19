@@ -1,31 +1,68 @@
 import React, { useState } from 'react';
-import {ScrollView, View, Text, StyleSheet, TextInput, Button, TouchableOpacity} from 'react-native';
-import FitImage from 'react-native-fit-image';
+import {ScrollView, View, Text, StyleSheet, TextInput, Button, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+// import AutoHeightImage from 'react-native-auto-height-image';
+import {Picker} from '@react-native-community/picker';
 import { connect } from 'react-redux'
 import { setExtractedAction} from '../actions'
+import { selectNotebookAction} from '../actions'
+import { selectNoteAction} from '../actions'
 
-const NewNotePage=({extracted, imagePath, setExtracted})=>{
+const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath, setExtracted, selectNotebook, selectNote,navigation})=>{
     const [title, setTitle] = useState('')
 
     const handleSubmit=()=>{
-
+      fetch('http://ff9f34faf1f5.ngrok.io/api/v1/notes',{
+        method: 'POST',
+        headers : {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        }, 
+        body: 
+        JSON.stringify(
+          { title: title,
+            content: extracted,
+            notebook_id: currentNotebook,
+            // image: imageData,
+            // file_name: imageData.uri.split("/")[imageData.uri.split("/").length - 1]
+          }
+        )
+      })
+      .then(resp=>resp.json())
+      .then(newNote => 
+        {
+        selectNote(newNote.id)
+        navigation.navigate('NoteTranslatePage')}
+      )
     }
 
     return (
-        <View style={styles.container}>
-            <TextInput
-                onChangeText={(title) => setTitle({ title })}
+      <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      // style={styles.container}
+    >
+
+      <View style={styles.container}>
+        <ScrollView>
+          <Picker
+            selectedValue={currentNotebook}
+            // style={{height: 50, width: 100}}
+            onValueChange={ value =>
+              selectNotebook(value)
+            }>
+            
+              {notebooks.map(notebook=>
+              <Picker.Item label={notebook.notebook_name} value={notebook.id} key={notebook.id} />
+              )}
+          </Picker>
+          {/* <Button
+                onPress={()=>translate}
+                title='Translate'
+            /> */}
+          <TextInput
+                onChangeText={(title) => setTitle(title)}
                 value={title}
                 placeholder={"Add Title"}
                 style={styles.title}
-            />
-            <FitImage
-                indicator={true}
-                indicatorColor='gray'
-                indicatorSize='small'
-                source={{ uri: imagePath }}
-                resizeMode="cover"
-                style={styles.image}
             />
             <TextInput 
                 multiline={true}
@@ -33,44 +70,189 @@ const NewNotePage=({extracted, imagePath, setExtracted})=>{
                 value={extracted}
                 style={styles.text}
             />
+            {/* <AutoHeightImage
+                source={{ uri: imagePath }}
+                width={300}
+            /> */}
             <Button
                 onPress={()=>handleSubmit()}
                 title='Submit'
             />
-        </View>
+        </ScrollView>
+      </View>
+
+      </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-      paddingVertical: 8,
-      paddingHorizontal: 16
+      marginLeft : 20,
+      marginRight: 20,
+      marginBottom: 20
+      // marginBottom: 80,
+      // paddingVertical: 8,
+      // paddingHorizontal: 16,
+      // alignItems: "center", 
+      // justifyContent: "center"
     },
     title: {
-      marginBottom: 8,
       color: '#333',
       fontWeight: 'bold',
-      fontSize: 16
+      fontSize: 30
     },
     text: {
-      marginBottom: 8,
-    },
-    image: {
-        flex: 1,
-        alignSelf: 'stretch'
+      marginBottom: 20,
+      fontSize: 20
     }
   });
 
 const mapStateToProps = state => {
   return {       
       extracted: state.extracted,
-      imagePath: state.imagePath
+      imageData: state.imageData,
+      imagePath: state.imagePath,
+      notebooks: state.notebooks,
+      currentNotebook: state.currentNotebook
   }
 }
 
   const mapDispatchToProps = dispatch => {
     return {
-        setExtracted: (extractedText) => dispatch(setExtractedAction(extractedText))
+      setExtracted: (extractedText) => dispatch(setExtractedAction(extractedText)),
+      selectNotebook: (id) => dispatch(selectNotebookAction(id)),
+      selectNote: (id) => dispatch(selectNoteAction(id))
     }
   }
 export default connect (mapStateToProps, mapDispatchToProps)(NewNotePage)
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import {ScrollView, View, Text, StyleSheet, TextInput, Button, TouchableOpacity} from 'react-native';
+// import AutoHeightImage from 'react-native-auto-height-image';
+// import {Picker} from '@react-native-community/picker';
+// import { connect } from 'react-redux'
+// import { setExtractedAction} from '../actions'
+// import { selectNotebookAction} from '../actions'
+
+// const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath, setExtracted, selectNotebook, navigation})=>{
+//     const [title, setTitle] = useState('')
+
+//     const handleSubmit= ()=>{
+//       const formData = new FormData();
+//       formData.append('Note', {
+//         uri: imagePath,
+//        type: 'image/jpeg', 
+//        name: "imagename.jpg",
+//        title: title,
+//         content: extracted,
+//         notebook_id: currentNotebook
+//      });
+      
+//       let res = fetch('http://8170085f63df.ngrok.io//api/v1/notes',{
+//         method: 'POST',
+//         headers : {
+//           'Content-Type': 'multipart/form-data; ',
+//         }, 
+//         body: formData
+//       })
+//       .then(resp=>resp.json())
+//       .then(newNote => 
+//         navigation.navigate('NotesPage')
+//         )
+//     }
+
+//     return (
+//       <View style={styles.container}>
+//         <ScrollView>
+//           <Picker
+//             selectedValue={currentNotebook}
+//             // style={{height: 50, width: 100}}
+//             onValueChange={ value =>
+//               selectNotebook(value)
+//             }>
+//               {notebooks.map(notebook=>
+//               <Picker.Item label={notebook.notebook_name} value={notebook.id} key={notebook.id} />
+//               )}
+//           </Picker>
+//           <TextInput
+//                 onChangeText={(title) => setTitle(title)}
+//                 value={title}
+//                 placeholder={"Add Title"}
+//                 style={styles.title}
+//             />
+//             <TextInput 
+//                 multiline={true}
+//                 onChangeText={ extracted => setExtracted(extracted)}
+//                 value={extracted}
+//                 style={styles.text}
+//             />
+//             <AutoHeightImage
+//                 source={{ uri: imagePath }}
+//                 width={300}
+//             />
+//             <Button
+//                 onPress={()=>handleSubmit()}
+//                 title='Submit'
+//             />
+//         </ScrollView>
+//       </View>
+//     );
+// }
+
+// const styles = StyleSheet.create({
+//     container: {
+//       marginBottom: 80,
+//       paddingVertical: 8,
+//       paddingHorizontal: 16,
+//       alignItems: "center", 
+//       justifyContent: "center"
+//     },
+//     title: {
+//       color: '#333',
+//       fontWeight: 'bold',
+//       fontSize: 16
+//     },
+//     text: {
+//       marginBottom: 20,
+//     }
+//   });
+
+// const mapStateToProps = state => {
+//   return {       
+//       extracted: state.extracted,
+//       imageData: state.imageData,
+//       imagePath: state.imagePath,
+//       notebooks: state.notebooks,
+//       currentNotebook: state.currentNotebook
+//   }
+// }
+
+//   const mapDispatchToProps = dispatch => {
+//     return {
+//       setExtracted: (extractedText) => dispatch(setExtractedAction(extractedText)),
+//       selectNotebook: (id) => dispatch(selectNotebookAction(id))
+//     }
+//   }
+// export default connect (mapStateToProps, mapDispatchToProps)(NewNotePage)
+
+
+
+
+
+
+
+
+
+

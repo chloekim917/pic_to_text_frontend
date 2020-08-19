@@ -6,12 +6,16 @@ import { selectNotebookAction} from '../actions'
 
 const Notebooks=({select, notebook_name, id})=>{
   const navigation = useNavigation()
-  // onPress={() => navigation.navigate('NotesPage')}
+
+  const handleNotebookPress = () =>{
+    navigation.navigate('NotesPage')
+    select(id)
+  }
 
 
     return (
         <View>
-          <TouchableOpacity onPress={() => navigation.navigate('NotesPage')}>
+          <TouchableOpacity onPress={() => handleNotebookPress()}>
             {/* <Text onPress={() => select(id) } > */}
             <Text>
             {notebook_name}

@@ -7,9 +7,13 @@ import { selectNoteAction} from '../actions'
 const Notes=({choose, title, id})=>{
   const navigation = useNavigation()
 
+  const handleNotePress = () =>{
+    navigation.navigate('NoteDetailPage')
+    choose(id)
+  }
+
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('NoteDetailPage')}>
-        {/* <Text onPress={() => choose(id) } > */}
+      <TouchableOpacity onPress={() => handleNotePress()}>
          <Text>{title}</Text>
       </TouchableOpacity>
     );

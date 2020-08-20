@@ -22,7 +22,7 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
           { title: title,
             content: extracted,
             notebook_id: currentNotebook,
-            image_path: imagePath
+            // image_path: imagePath
             // image: imageData,
             // file_name: imageData.uri.split("/")[imageData.uri.split("/").length - 1]
           }
@@ -43,14 +43,12 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
     >
 
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView style={{height: 500}}> 
           <Picker
             selectedValue={currentNotebook}
-            // style={{height: 50, width: 100}}
-            onValueChange={ value =>
-              selectNotebook(value)
-            }>
-            
+            style={{height: 200, width: 300, marginTop:-40}}
+            itemStyle={{fontWeight: '300', fontSize:17, color:'charcoal' }}
+            onValueChange={ value => selectNotebook(value)}>
               {notebooks.map(notebook=>
               <Picker.Item label={notebook.notebook_name} value={notebook.id} key={notebook.id} />
               )}
@@ -61,21 +59,22 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
                 placeholder={"Add Title"}
                 style={styles.title}
             />
-          <AutoHeightImage
+          {/* <AutoHeightImage
                 source={{ uri: imagePath }}
                 width={300}
-            />
+            /> */}
             <TextInput 
                 multiline={true}
                 onChangeText={ extracted => setExtracted(extracted)}
                 value={extracted}
                 style={styles.text}
             />
-            <Button
+
+        </ScrollView>
+        <Button
                 onPress={()=>handleSubmit()}
                 title='Submit'
             />
-        </ScrollView>
       </View>
 
       </KeyboardAvoidingView>
@@ -84,25 +83,24 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
 
 const styles = StyleSheet.create({
     container: {
-      marginLeft : 20,
-      marginRight: 20,
+      marginLeft : 10,
+      marginRight: 10,
       marginBottom: 20
-      // marginBottom: 80,
-      // paddingVertical: 8,
-      // paddingHorizontal: 16,
-      // alignItems: "center", 
-      // justifyContent: "center"
     },
     title: {
       color: '#333',
-      fontWeight: 'bold',
+      fontWeight: '200',
+      // marginTop: -30,
+      marginBottom: 20,
       fontSize: 30
     },
     text: {
       marginBottom: 20,
-      fontSize: 20
+      marginTop: 10,
+      fontSize: 20,
+      fontWeight: '200',
     }
-  });
+});
 
 const mapStateToProps = state => {
   return {       

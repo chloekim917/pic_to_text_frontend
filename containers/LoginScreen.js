@@ -1,23 +1,18 @@
 import * as React from 'react';
-import { ImageBackground, StyleSheet, Text, Button, View, TextInput, TouchableOpacity } from 'react-native';
-
-const image = { uri: "https://reactjs.org/logo-og.png" };
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 
 function LoginScreen({ navigation }) {
   return (
+    <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS == "ios" ? "padding" : "height"}>
     <View style={styles.container}>
-      {/* <ImageBackground source={image} style={styles.image}> */}
-        {/* <Text style={styles.text}>Inside</Text> */}
-        {/* <Button title="Sign In" onPress={() => navigation.navigate('NotebooksPage')}/> */}
-
-
         <Text style={styles.logo}>TransPict</Text>
+        <Image style={styles.language} source={require('./language.gif')}/>
+        <Image style={styles.camera} source={require('./camera.gif')}/>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
             placeholder="Id..." 
             placeholderTextColor="#003f5c"
-            // onChangeText={text => this.setState({email:text})}
             />
         </View>
         <View style={styles.inputView} >
@@ -26,20 +21,21 @@ function LoginScreen({ navigation }) {
             style={styles.inputText}
             placeholder="Password..." 
             placeholderTextColor="#003f5c"
-            // onChangeText={text => this.setState({password:text})}
             />
         </View>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('NotebooksPage')}>
-          <Text style={styles.loginText}>LOGIN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.loginText}>Signup</Text>
-        </TouchableOpacity>
-      {/* </ImageBackground> */}
+        </TouchableOpacity> */}
+        <View style={{marginTop: 10, flexDirection:'row', width: 250, justifyContent: 'space-between'}}>
+          <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('NotebooksPage')}>
+            <Text style={styles.loginText}>Signup</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('NotebooksPage')} >
+            <Text style={styles.loginText}>Login</Text>
+          </TouchableOpacity>
+        </View>
     </View>
+    </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
@@ -50,22 +46,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo:{
-    fontWeight:"bold",
+    fontWeight:"200",
     fontSize:50,
-    color:"#FFC8E2",
-    marginBottom:40
+    color: 'black'
+    // color:"rgb(160,13,31)",
+    // marginBottom:40
+  },
+  language:{
+    marginBottom: -50,
+    marginTop: 10,
+    marginLeft: 150,
+    width: 100,
+    height: 80
+  },
+  camera:{
+    marginTop:-5,
+    marginBottom: -10
+    // width: 150,
+    // height: 100
   },
   inputView:{
     width:"80%",
-    backgroundColor:"#F9F871",
+    backgroundColor:"#EAECEF",
     borderRadius:25,
-    height:50,
-    marginBottom:20,
+    height:35,
+    marginBottom:5,
     justifyContent:"center",
     padding:20
   },
   inputText:{
-    height:50,
+    height:40,
     color:"black"
   },
   forgot:{
@@ -73,17 +83,18 @@ const styles = StyleSheet.create({
     fontSize:11
   },
   loginBtn:{
-    width:"80%",
-    backgroundColor:"#AAA9BC",
-    borderRadius:25,
-    height:50,
+    width:115,
+    backgroundColor:"#3F3F3F",
+    borderRadius:10,
+    height:40,
     alignItems:"center",
     justifyContent:"center",
-    marginTop:40,
-    marginBottom:10
+    // marginTop:10,
+    marginBottom:5
   },
   loginText:{
-    color:"white"
+    color:"white",
+    fontSize: 15
   },
   // image: {
   //   flex: 1,

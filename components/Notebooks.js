@@ -15,13 +15,14 @@ const Notebooks=({select, notebook_name, id})=>{
   }
 
     return (
-      <View style={{display: "flex", flexDirection:'row', flexWrap: "wrap", margin:20, justifyContent:"space-between"}}>
+      <View >
         <TouchableOpacity onPress={() => handleNotebookPress()}>
-          {/* <Text onPress={() => select(id) } > */}
-          <ImageBackground source={require('./5f3d6524b5b29.png')} style={{width:110, height:170, flexGrow:1, alignItems: 'center', justifyContent:'center',}}>
-            <Text>
+          <ImageBackground source={require('./notebook.png')} style={{width:150, height:200,marginBottom: -20}}>
+            <View style={{ width: 96, height: 20, backgroundColor: '#b2b2b2', marginLeft: 27, marginTop:65, justifyContent: 'center', alignItems:'center', borderRadius:0}}>
+            <Text style={{color: 'white', fontWeight: '400'}}>
             {notebook_name}
             </Text>
+            </View>
           </ImageBackground>
             
         </TouchableOpacity>

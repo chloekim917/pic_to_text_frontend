@@ -64,9 +64,13 @@ const NoteTranslatePage = (props)=>{
       }
 
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ScrollView>
-            <Picker selectedValue={language} onValueChange={ value => setLanguage(value)}>
+      <View style={styles.container}>
+        <ScrollView style={{height:500}}>
+            <Picker 
+              selectedValue={language} 
+              style={{height: 200, width: 300, marginTop:-40, marginBottom:10}}
+              itemStyle={{fontWeight: '300', fontSize:17, color:'charcoal' }}
+              onValueChange={ value => setLanguage(value)}>
                 {/* style={{height: 50, width: 100}} */}
                 <Picker.Item label='Arabic' value='ar' />
                 <Picker.Item label='Chinese' value='zh' />
@@ -87,15 +91,80 @@ const NoteTranslatePage = (props)=>{
                 <Picker.Item label='Russian' value='ru' />
                 <Picker.Item label='Spanish' value='es' />
             </Picker>
-            <Button onPress={()=>handleTranslate()} title='Translate'/>
-            <Text>Title: {title}</Text>
-            <Text>Content: {content}</Text>
-            <Text>Translated Content: {props.translated}</Text>
-            <Button onPress={()=>handleSubmit()} title='Submit'/>
+            {/* <Button style={styles.translate} onPress={()=>handleTranslate()} title='Translate'/> */}
+            <Text style={styles.title}>{title}</Text>
+            <View style={{ borderBottomColor: 'black', borderBottomWidth: 1,}}/>
+            <Text style={styles.originalText}>{content}</Text>
+            <Text style={styles.text}>{props.translated}</Text>
+
         </ScrollView>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginLeft: 30, marginRight: 30, marginTop: -5}}>
+          <TouchableOpacity onPress={()=>handleTranslate()}>
+            <Image style={styles.button} source={require('./translate.png')}/>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>handleSubmit()}>
+            <Image style={styles.button2} source={require('./check.png')}/>
+          </TouchableOpacity>
+        </View>
       </View>
     );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginLeft : 10,
+    marginRight: 10,
+    marginBottom: 20
+    // marginBottom: 80,
+    // paddingVertical: 8,
+    // paddingHorizontal: 16,
+    // alignItems: "center", 
+    // justifyContent: "center"
+  },
+  button: {
+    width: 75,
+    height:75,
+    marginTop: -3
+    // color: '#21242A',
+    // fontWeight: '200',
+    // marginTop: -50,
+    // marginBottom: -10,
+    // fontSize: 30
+  },
+  button2: {
+    width: 40,
+    height:40,
+    marginTop: 15,
+    marginRight: 10
+    // color: '#21242A',
+    // fontWeight: '200',
+    // marginTop: -50,
+    // marginBottom: -10,
+    // fontSize: 30
+  },
+  title: {
+    color: '#333',
+    fontWeight: '200',
+    // marginTop: -30,
+    marginBottom: 5,
+    marginLeft: 5,
+    fontSize: 30
+  },
+  originalText: {
+    // marginBottom: 20,
+    marginTop: 20,
+    marginLeft: 5,
+    fontSize: 16,
+    fontWeight: '200',
+  },
+  text: {
+    // marginBottom: 20,
+    marginTop: 20,
+    marginLeft: 5,
+    fontSize: 20,
+    fontWeight: '200',
+  }
+});
 
 const mapStateToProps = state => {
   return {       

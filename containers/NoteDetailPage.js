@@ -3,8 +3,6 @@ import {ScrollView, View, Text, StyleSheet, TextInput, Button, Image, TouchableO
 import { useNavigation } from '@react-navigation/native'
 import AutoHeightImage from 'react-native-auto-height-image';
 import { connect } from 'react-redux'
-// import { fetchNotesAction } from '../actions'
-// import { selectNoteAction} from '../actions'
 
 const NoteDetailPage = (props)=>{
   const navigation = useNavigation()
@@ -26,20 +24,63 @@ const NoteDetailPage = (props)=>{
   }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop:30, marginLeft: 10, marginRight:10 }}>
-      <ScrollView>
-        
-        <Button onPress={()=>navigation.navigate('NoteEditPage')} title='Edit'/>
-        <Button onPress={()=>handleDelete()} title='Delete' style={{marginTop: 30}}/>
-        <Text>Title: {thisNote.title}</Text>
-        <AutoHeightImage source={{ uri: thisNote.image_path }} width={300}/>
-        <Text>Content: {thisNote.content}</Text>
-        <Text>Translation: {thisNote.translated}</Text>
-        <Button onPress={()=>navigation.navigate('NotesPage')} title='Back to Notes'/>
+    <View style={styles.container}>
+      <ScrollView style={{height:485}}>
+        <Text style={styles.title}>{thisNote.title}</Text>
+        {/* <AutoHeightImage source={{ uri: thisNote.image_path }} width={300}/> */}
+        <Text style={styles.text1}>{thisNote.content}</Text>
+        <Text style={styles.text2}>{thisNote.translated}</Text>
       </ScrollView>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between', marginLeft: 20, marginRight: 20, marginTop: -5}}>
+          <TouchableOpacity onPress={()=>navigation.navigate('NotesPage')}>
+            <Image style={styles.button2} source={require('./blackback.png')}/>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate('NoteEditPage')}>
+            <Image style={styles.button2} source={require('./edit.png')}/>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>handleDelete()}>
+            <Image style={styles.button2} source={require('./trash.png')}/>
+          </TouchableOpacity>
+      </View>
+        {/* <Button onPress={()=>navigation.navigate('NotesPage')} title='Back to Notes'/>
+        <Button onPress={()=>navigation.navigate('NoteEditPage')} title='Edit'/>
+        <Button onPress={()=>handleDelete()} title='Delete' style={{marginTop: 30}}/> */}
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    marginLeft : 10,
+    marginRight: 10,
+    marginBottom: 20
+  },
+  button2: {
+    width: 45,
+    height:45,
+    marginTop: 15,
+    marginRight: 10
+  },
+  title: {
+    color: '#333',
+    fontWeight: '200',
+    marginTop: 60,
+    marginBottom: 20,
+    marginLeft: 5,
+    fontSize: 40
+  },
+  text2: {
+    marginTop: 10,
+    marginLeft: 5,
+    fontSize: 20,
+    fontWeight: '100',
+  },
+  text1: {
+    marginTop: 20,
+    marginLeft: 5,
+    fontSize: 17,
+    fontWeight: '100',
+  },
+});
 
 const mapStateToProps = state => {
   return {       

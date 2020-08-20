@@ -1,6 +1,6 @@
 'use strict';
 import React, { PureComponent } from 'react';
-import { AppRegistry, StyleSheet, Text, TouchableOpacity, View, Image, Dimensions } from 'react-native';
+import { AppRegistry, StyleSheet, Text, TouchableOpacity, View, Image, Dimensions, ImageBackground } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import CameraRoll from "@react-native-community/cameraroll";
 import firebase from '@react-native-firebase/app';
@@ -19,8 +19,7 @@ const PendingView = () => (
       backgroundColor: 'lightblue',
       justifyContent: 'center',
       alignItems: 'center',
-    }}
-  >
+    }}>
     <Text>Loading</Text>
   </View>
 );
@@ -29,20 +28,20 @@ const Camera=(props)=>{
   const navigation = useNavigation()
 
   const CapturedView = () => (
-    <>
-      <Image
+      <ImageBackground
         source={{ uri: props.imageData.uri }}
-        style={styles.preview}
-      />
-      <Text
-        style={styles.cancel}
-        onPress={() => props.setImageData(null) && props.setImagePath(null)}
-      >Discard</Text>
-      <Text
-        style={styles.extract}
-        onPress={()=>handleExtract()}
-      >Extract Text</Text>
-    </>
+        style={styles.preview}>
+        <View style={styles.previewContainer1}>
+          <TouchableOpacity onPress={() => props.setImageData(null) && props.setImagePath(null)}>
+            <Image style={styles.discard} source={require('./trashcan.png')} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.previewContainer2}>
+          <TouchableOpacity onPress={()=>handleExtract()} >
+            <Image style={styles.extract} source={require('./extract.png')}/>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
   )
 
   const CameraView = () => (
@@ -59,10 +58,17 @@ const Camera=(props)=>{
       {({ camera, status }) => {
         if (status !== 'READY') return <PendingView />;
         return (
-          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-            <TouchableOpacity onPress={() => takePicture(camera)} style={styles.capture}>
-              <Text style={{ fontSize: 14 }}> SNAP </Text>
-            </TouchableOpacity>
+          <View>
+            <View style={styles.container1}>
+            <Image style={styles.iconBack} source={require('./back.png')} onPress={() => navigation.goBack()}/>
+              <Image style={styles.icons} source={require('./home.png')} onPress={() => navigation.navigate('NotebooksPage')}/>
+            </View>
+            <View style={styles.container2}>
+              <TouchableOpacity onPress={() => takePicture(camera)} style={styles.capture}>
+                <Image source={require('./cameraButton.png')}/>
+              </TouchableOpacity>
+            </View>
+
           </View>
         );
       }}
@@ -74,8 +80,7 @@ const Camera=(props)=>{
     const data = await camera.takePictureAsync(options);
 
     CameraRoll.save(data.uri,'photo')
-    // console.log(data)
-    // console.log(data.uri.split("/")[data.uri.split("/").length - 1])
+
     const pic = data
     const picPath = data.uri
 
@@ -108,19 +113,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'black',
   },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
   capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 100,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20,
+    // alignSelf: 'flex-end',
+    marginTop: 100,
   },
   cancel: {
     position: 'absolute',
@@ -131,14 +126,61 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 17,
   },
+
+  container1: {
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    marginTop: 20,
+    width: Dimensions.get('screen').width,
+    height: 400,
+  },
+  icons: {
+    height: 60,
+    width: 60,
+    marginRight: 10
+  },
+  iconBack: {
+    height: 40,
+    width: 40,
+    marginLeft: 15,
+    marginTop: 10
+  },  
+  container2: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    width: Dimensions.get('screen').width,
+    height: 80,
+  },
+  preview: {
+    flex: 1,
+    // justifyContent: 'flex-end',
+    // flexDirection: 'row'
+    // alignItems: 'center',
+  },
+  previewContainer1: {
+    alignItems: 'flex-end',
+    flexDirection: 'column',
+    width: Dimensions.get('screen').width,
+    height: 70,
+  },
+  previewContainer2: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    width: Dimensions.get('screen').width,
+    marginTop: 420,
+    height: 70,
+  },
+  discard: {
+    height: 40,
+    width: 40,
+    marginTop: 30,
+    marginRight: 20
+  },  
   extract: {
-    position: 'absolute',
-    right: 20,
-    top: 40,
-    backgroundColor: 'transparent',
-    color: 'blue',
-    fontWeight: '600',
-    fontSize: 17,
+    height: 50,
+    width: 50,
   }
 })
 

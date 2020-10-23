@@ -11,7 +11,7 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
     const [title, setTitle] = useState('')
 
     const handleSubmit=()=>{
-      fetch('http://ff9f34faf1f5.ngrok.io/api/v1/notes',{
+      fetch('http://54aba409e9cf.ngrok.io/api/v1/notes',{
         method: 'POST',
         headers : {
           'Content-Type': 'application/json',

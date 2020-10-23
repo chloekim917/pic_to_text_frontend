@@ -18,7 +18,7 @@ const NotebooksPage=(props)=>{
   }, [])
 
   const handleAddNotebook = () =>{
-    fetch('http://ff9f34faf1f5.ngrok.io/api/v1/notebooks',{
+    fetch('http://54aba409e9cf.ngrok.io/api/v1/notebooks',{
         method: 'POST',
         headers : {
           'Content-Type': 'application/json',

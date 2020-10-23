@@ -9,7 +9,7 @@ const NoteDetailPage = (props)=>{
   const thisNote = props.notes.find(note=>note.id===props.currentNote)
 
   const handleDelete=()=>{
-    fetch(`http://ff9f34faf1f5.ngrok.io/api/v1/notes/${props.currentNote}`,{
+    fetch(`http://54aba409e9cf.ngrok.io/api/v1/notes/${props.currentNote}`,{
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

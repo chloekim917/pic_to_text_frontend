@@ -1,6 +1,6 @@
 'use strict';
 import React, { PureComponent } from 'react';
-import { AppRegistry, StyleSheet, Text, TouchableOpacity, View, Image, Dimensions, ImageBackground } from 'react-native';
+import { AppRegistry, StyleSheet, Text, TouchableOpacity, View, Image, Dimensions, ImageBackground,  ActivityIndicator } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import CameraRoll from "@react-native-community/cameraroll";
 import firebase from '@react-native-firebase/app';

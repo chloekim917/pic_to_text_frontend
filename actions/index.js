@@ -1,10 +1,10 @@
 const fetchNotebooksAction = () => dispatch => {
-     fetch('http://ff9f34faf1f5.ngrok.io/api/v1/notebooks')
+     fetch('http://54aba409e9cf.ngrok.io/api/v1/notebooks')
     .then(resp => resp.json())
     .then(notebooks => dispatch({type: 'FETCH_NOTEBOOKS', payload: {notebooks}}))
 }
 const fetchNotesAction = () => dispatch => {
-    fetch('http://ff9f34faf1f5.ngrok.io/api/v1/notes')
+    fetch('http://54aba409e9cf.ngrok.io/api/v1/notes')
    .then(resp => resp.json())
    .then(notes => dispatch({type: 'FETCH_NOTES', payload: {notes}}))
 }

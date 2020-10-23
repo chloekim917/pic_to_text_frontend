@@ -12,7 +12,7 @@ const NoteEditPage = (props)=>{
   const [translated, setTranslated] = useState(thisNote.translated)
 
   const handleSubmit=()=>{
-    fetch(`http://ff9f34faf1f5.ngrok.io/api/v1/notes/${props.currentNote}`,{
+    fetch(`http://54aba409e9cf.ngrok.io/api/v1/notes/${props.currentNote}`,{
       method: 'PATCH',
       headers : {
         'Content-Type': 'application/json',

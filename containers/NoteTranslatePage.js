@@ -15,7 +15,7 @@ const NoteTranslatePage = (props)=>{
   const apiKey = Config.GOOGLE_API_KEY
 
     useEffect(() => {
-        fetch(`http://ff9f34faf1f5.ngrok.io/api/v1/notes/${props.currentNote}`)
+        fetch(`http://54aba409e9cf.ngrok.io/api/v1/notes/${props.currentNote}`)
         .then(resp => resp.json())
         .then(notes => {
             setTitle(notes.title)
@@ -44,7 +44,7 @@ const NoteTranslatePage = (props)=>{
     }
 
     const handleSubmit=()=>{
-        fetch(`http://ff9f34faf1f5.ngrok.io/api/v1/notes/${props.currentNote}`,{
+        fetch(`http://54aba409e9cf.ngrok.io/api/v1/notes/${props.currentNote}`,{
           method: 'PATCH',
           headers : {
             'Content-Type': 'application/json',

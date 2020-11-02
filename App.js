@@ -16,7 +16,7 @@ import NewNotePage from './containers/NewNotePage'
 import NoteTranslatePage from './containers/NoteTranslatePage'
 import NoteEditPage from './containers/NoteEditPage'
 
-// const store = createStore(allReducers, applyMiddleware(thunk));
+
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 const Stack = createStackNavigator();
 

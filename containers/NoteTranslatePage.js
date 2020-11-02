@@ -71,7 +71,6 @@ const NoteTranslatePage = (props)=>{
               style={{height: 200, width: 300, marginTop:-40, marginBottom:10}}
               itemStyle={{fontWeight: '300', fontSize:17, color:'charcoal' }}
               onValueChange={ value => setLanguage(value)}>
-                {/* style={{height: 50, width: 100}} */}
                 <Picker.Item label='Arabic' value='ar' />
                 <Picker.Item label='Chinese' value='zh' />
                 {/* <Picker.Item label='Dutch' value='nl' /> */}

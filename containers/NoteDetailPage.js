@@ -42,9 +42,6 @@ const NoteDetailPage = (props)=>{
             <Image style={styles.button2} source={require('./trash.png')}/>
           </TouchableOpacity>
       </View>
-        {/* <Button onPress={()=>navigation.navigate('NotesPage')} title='Back to Notes'/>
-        <Button onPress={()=>navigation.navigate('NoteEditPage')} title='Edit'/>
-        <Button onPress={()=>handleDelete()} title='Delete' style={{marginTop: 30}}/> */}
     </View>
   );
 }

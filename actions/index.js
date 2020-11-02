@@ -15,7 +15,6 @@ const setImagePathAction = (picPath) => ({type: 'SET_IMAGE_PATH', payload: {valu
 const setExtractedAction = (extractedText) => ({type: 'SET_EXTRACTED', payload: {value:extractedText}})
 const setConfidenceAction = (confidenceRate) => ({type: 'SET_CONFIDENCE', payload: {value:confidenceRate}})
 const setTranslatedAction = (translatedText) => ({type: 'SET_TRANSLATED', payload: {value:translatedText}})
-// const setContentAction = (contentText) => ({type: 'SET_CONTENT', payload: {value: contentText}})
 
 export {
     fetchNotebooksAction,

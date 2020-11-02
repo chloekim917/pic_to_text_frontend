@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
@@ -15,7 +13,8 @@ import CameraContainer from './containers/CameraContainer'
 import NewNotePage from './containers/NewNotePage'
 import NoteTranslatePage from './containers/NoteTranslatePage'
 import NoteEditPage from './containers/NoteEditPage'
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 const Stack = createStackNavigator();
@@ -40,3 +39,6 @@ function App() {
 }
 
 export default App;
+
+
+

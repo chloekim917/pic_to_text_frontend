@@ -23,9 +23,6 @@ function LoginScreen({ navigation }) {
             placeholderTextColor="#003f5c"
             />
         </View>
-        {/* <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity> */}
         <View style={{marginTop: 10, flexDirection:'row', width: 250, justifyContent: 'space-between'}}>
           <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('NotebooksPage')}>
             <Text style={styles.loginText}>Signup</Text>
@@ -49,8 +46,6 @@ const styles = StyleSheet.create({
     fontWeight:"200",
     fontSize:50,
     color: 'black'
-    // color:"rgb(160,13,31)",
-    // marginBottom:40
   },
   language:{
     marginBottom: -50,
@@ -62,8 +57,6 @@ const styles = StyleSheet.create({
   camera:{
     marginTop:-5,
     marginBottom: -10
-    // width: 150,
-    // height: 100
   },
   inputView:{
     width:"80%",
@@ -89,18 +82,12 @@ const styles = StyleSheet.create({
     height:40,
     alignItems:"center",
     justifyContent:"center",
-    // marginTop:10,
     marginBottom:5
   },
   loginText:{
     color:"white",
     fontSize: 15
   },
-  // image: {
-  //   flex: 1,
-  //   resizeMode: "cover",
-  //   justifyContent: "center"
-  // }
 });
 
   export default LoginScreen

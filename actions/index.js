@@ -26,5 +26,4 @@ export {
     setExtractedAction,
     setConfidenceAction,
     setTranslatedAction
-    // setContentAction
 }

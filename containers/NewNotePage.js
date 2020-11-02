@@ -21,10 +21,7 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
         JSON.stringify(
           { title: title,
             content: extracted,
-            notebook_id: currentNotebook,
-            // image_path: imagePath
-            // image: imageData,
-            // file_name: imageData.uri.split("/")[imageData.uri.split("/").length - 1]
+            notebook_id: currentNotebook
           }
         )
       })
@@ -39,7 +36,6 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
     return (
       <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "height"}
-      // style={styles.container}
     >
 
       <View style={styles.container}>
@@ -59,10 +55,6 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
                 placeholder={"Add Title"}
                 style={styles.title}
             />
-          {/* <AutoHeightImage
-                source={{ uri: imagePath }}
-                width={300}
-            /> */}
             <TextInput 
                 multiline={true}
                 onChangeText={ extracted => setExtracted(extracted)}
@@ -120,129 +112,6 @@ const mapStateToProps = state => {
     }
   }
 export default connect (mapStateToProps, mapDispatchToProps)(NewNotePage)
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from 'react';
-// import {ScrollView, View, Text, StyleSheet, TextInput, Button, TouchableOpacity} from 'react-native';
-// import AutoHeightImage from 'react-native-auto-height-image';
-// import {Picker} from '@react-native-community/picker';
-// import { connect } from 'react-redux'
-// import { setExtractedAction} from '../actions'
-// import { selectNotebookAction} from '../actions'
-
-// const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath, setExtracted, selectNotebook, navigation})=>{
-//     const [title, setTitle] = useState('')
-
-//     const handleSubmit= ()=>{
-//       const formData = new FormData();
-//       formData.append('Note', {
-//         uri: imagePath,
-//        type: 'image/jpeg', 
-//        name: "imagename.jpg",
-//        title: title,
-//         content: extracted,
-//         notebook_id: currentNotebook
-//      });
-      
-//       let res = fetch('http://8170085f63df.ngrok.io//api/v1/notes',{
-//         method: 'POST',
-//         headers : {
-//           'Content-Type': 'multipart/form-data; ',
-//         }, 
-//         body: formData
-//       })
-//       .then(resp=>resp.json())
-//       .then(newNote => 
-//         navigation.navigate('NotesPage')
-//         )
-//     }
-
-//     return (
-//       <View style={styles.container}>
-//         <ScrollView>
-//           <Picker
-//             selectedValue={currentNotebook}
-//             // style={{height: 50, width: 100}}
-//             onValueChange={ value =>
-//               selectNotebook(value)
-//             }>
-//               {notebooks.map(notebook=>
-//               <Picker.Item label={notebook.notebook_name} value={notebook.id} key={notebook.id} />
-//               )}
-//           </Picker>
-//           <TextInput
-//                 onChangeText={(title) => setTitle(title)}
-//                 value={title}
-//                 placeholder={"Add Title"}
-//                 style={styles.title}
-//             />
-//             <TextInput 
-//                 multiline={true}
-//                 onChangeText={ extracted => setExtracted(extracted)}
-//                 value={extracted}
-//                 style={styles.text}
-//             />
-//             <AutoHeightImage
-//                 source={{ uri: imagePath }}
-//                 width={300}
-//             />
-//             <Button
-//                 onPress={()=>handleSubmit()}
-//                 title='Submit'
-//             />
-//         </ScrollView>
-//       </View>
-//     );
-// }
-
-// const styles = StyleSheet.create({
-//     container: {
-//       marginBottom: 80,
-//       paddingVertical: 8,
-//       paddingHorizontal: 16,
-//       alignItems: "center", 
-//       justifyContent: "center"
-//     },
-//     title: {
-//       color: '#333',
-//       fontWeight: 'bold',
-//       fontSize: 16
-//     },
-//     text: {
-//       marginBottom: 20,
-//     }
-//   });
-
-// const mapStateToProps = state => {
-//   return {       
-//       extracted: state.extracted,
-//       imageData: state.imageData,
-//       imagePath: state.imagePath,
-//       notebooks: state.notebooks,
-//       currentNotebook: state.currentNotebook
-//   }
-// }
-
-//   const mapDispatchToProps = dispatch => {
-//     return {
-//       setExtracted: (extractedText) => dispatch(setExtractedAction(extractedText)),
-//       selectNotebook: (id) => dispatch(selectNotebookAction(id))
-//     }
-//   }
-// export default connect (mapStateToProps, mapDispatchToProps)(NewNotePage)
-
-
 
 
 

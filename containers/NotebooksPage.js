@@ -69,16 +69,13 @@ const NotebooksPage=(props)=>{
           </TouchableHighlight>
         </View>
         <View style={styles.container2}>
-          {/* <ScrollView style={{flexGrow:1}}> */}
           {props.notebooks.map(notebook => <Notebooks key={notebook.id} {...notebook}/>)} 
-          {/* </ScrollView> */}
         </View>
         <View style={styles.container3}>
           <TouchableOpacity onPress={() => navigation.navigate('CameraContainer')}>
             <Image style={styles.cameraButton} source={require('./cameraIcon.png')}/>
           </TouchableOpacity>
         </View>
-      {/* </ScrollView> */}
       </View>
     )        
 }

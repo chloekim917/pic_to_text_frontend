@@ -19,7 +19,6 @@ const NoteDetailPage = (props)=>{
     .then(resp => resp.json())
     .then(()=> {
       navigation.navigate('NotebooksPage')
-      // props.fetchNotes()
     })
   }
 
@@ -27,7 +26,6 @@ const NoteDetailPage = (props)=>{
     <View style={styles.container}>
       <ScrollView style={{height:485}}>
         <Text style={styles.title}>{thisNote.title}</Text>
-        {/* <AutoHeightImage source={{ uri: thisNote.image_path }} width={300}/> */}
         <Text style={styles.text1}>{thisNote.content}</Text>
         <Text style={styles.text2}>{thisNote.translated}</Text>
       </ScrollView>
@@ -87,9 +85,4 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchNotes: () => dispatch(fetchNotesAction())
-//   }
-// }
 export default connect (mapStateToProps, null)(NoteDetailPage)

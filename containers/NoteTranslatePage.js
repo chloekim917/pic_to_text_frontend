@@ -73,24 +73,16 @@ const NoteTranslatePage = (props)=>{
               onValueChange={ value => setLanguage(value)}>
                 <Picker.Item label='Arabic' value='ar' />
                 <Picker.Item label='Chinese' value='zh' />
-                {/* <Picker.Item label='Dutch' value='nl' /> */}
                 <Picker.Item label='English' value='en' />
                 <Picker.Item label='French' value='fr' />
                 <Picker.Item label='German' value='de' />
-                {/* <Picker.Item label='Greek' value='el' />
-                <Picker.Item label='Hebrew' value='he' /> */}
                 <Picker.Item label='Hindi' value='hi' />
-                {/* <Picker.Item label='Indonesian' value='id' />
-                <Picker.Item label='Irish' value='ga' />
-                <Picker.Item label='Italian' value='it' /> */}
                 <Picker.Item label='Japanese' value='ja' />
                 <Picker.Item label='Korean' value='ko' />
-                {/* <Picker.Item label='Polish' value='pl' /> */}
                 <Picker.Item label='Portuguese' value='pt' />
                 <Picker.Item label='Russian' value='ru' />
                 <Picker.Item label='Spanish' value='es' />
             </Picker>
-            {/* <Button style={styles.translate} onPress={()=>handleTranslate()} title='Translate'/> */}
             <Text style={styles.title}>{title}</Text>
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 1,}}/>
             <Text style={styles.originalText}>{content}</Text>
@@ -114,50 +106,32 @@ const styles = StyleSheet.create({
     marginLeft : 10,
     marginRight: 10,
     marginBottom: 20
-    // marginBottom: 80,
-    // paddingVertical: 8,
-    // paddingHorizontal: 16,
-    // alignItems: "center", 
-    // justifyContent: "center"
   },
   button: {
     width: 75,
     height:75,
     marginTop: -3
-    // color: '#21242A',
-    // fontWeight: '200',
-    // marginTop: -50,
-    // marginBottom: -10,
-    // fontSize: 30
   },
   button2: {
     width: 40,
     height:40,
     marginTop: 15,
     marginRight: 10
-    // color: '#21242A',
-    // fontWeight: '200',
-    // marginTop: -50,
-    // marginBottom: -10,
-    // fontSize: 30
   },
   title: {
     color: '#333',
     fontWeight: '200',
-    // marginTop: -30,
     marginBottom: 5,
     marginLeft: 5,
     fontSize: 30
   },
   originalText: {
-    // marginBottom: 20,
     marginTop: 20,
     marginLeft: 5,
     fontSize: 16,
     fontWeight: '200',
   },
   text: {
-    // marginBottom: 20,
     marginTop: 20,
     marginLeft: 5,
     fontSize: 20,

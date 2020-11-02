@@ -24,12 +24,8 @@ const NotesPage=(props)=>{
           <Text style={{color:'white', fontSize: 30, fontWeight:'200'}}>{thisNotebook}</Text>
         </View>
         <View style={styles.container2}>
-          {/* <ScrollView> */}
          {props.notes.filter(note => note.notebook_id === props.currentNotebook).map(note =>  <Notes key={note.id} {...note}/>)}
-         {/* </ScrollView> */}
         </View>
-        {/* <View style={styles.container3}>
-        </View> */}
 
       </View>
     )        

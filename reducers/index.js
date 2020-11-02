@@ -1,4 +1,4 @@
-// import { combineReducers } from 'redux';
+
 
 const initialState = {
     notebooks: [],
@@ -10,7 +10,6 @@ const initialState = {
     extracted: '',
     confidence: '',
     translated: '',
-    // contentText: ''
 }
 
 
@@ -34,8 +33,6 @@ const reducer  = (prevState=initialState, action) => {
             return{...prevState, confidence: action.payload.value}
         case 'SET_TRANSLATED':
             return{...prevState, translated: action.payload.value}
-        // case 'SET_CONTENT':
-        //     return{...prevState, contentText: action.payload.value}
         default:
             return prevState
     }

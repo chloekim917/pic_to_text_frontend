@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   capture: {
-    // alignSelf: 'flex-end',
     marginTop: 100,
   },
   cancel: {
@@ -155,9 +154,6 @@ const styles = StyleSheet.create({
   },
   preview: {
     flex: 1,
-    // justifyContent: 'flex-end',
-    // flexDirection: 'row'
-    // alignItems: 'center',
   },
   previewContainer1: {
     alignItems: 'flex-end',

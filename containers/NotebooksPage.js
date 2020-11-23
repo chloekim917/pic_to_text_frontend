@@ -17,6 +17,8 @@ const NotebooksPage=(props)=>{
    props.fetchNotes()
   }, [])
 
+  //all fetches use nrok because of physical device in demo
+  //no redux for POSTs
   const handleAddNotebook = () =>{
     fetch('http://54aba409e9cf.ngrok.io/api/v1/notebooks',{
         method: 'POST',
@@ -41,7 +43,6 @@ const NotebooksPage=(props)=>{
 
     return (
       <View style={styles.contianer}>
-      {/* <ScrollView style={{flexGrow:1}}> */}
         <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => {Alert.alert("Modal has been closed.");}}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>

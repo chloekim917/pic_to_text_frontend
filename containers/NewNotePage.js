@@ -11,6 +11,7 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
     const [title, setTitle] = useState('')
 
     //all fetches use nrok because of physical device in demo
+    //no redux for POSTs
     const handleSubmit=()=>{
       fetch('http://54aba409e9cf.ngrok.io/api/v1/notes',{
         method: 'POST',

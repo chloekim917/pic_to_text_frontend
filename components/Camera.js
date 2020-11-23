@@ -12,6 +12,8 @@ import {setExtractedAction} from '../actions'
 import {setConfidenceAction} from '../actions'
 import { useNavigation } from '@react-navigation/native'
 
+
+//Load screen
 const PendingView = () => (
   <View
     style={{
@@ -27,6 +29,7 @@ const PendingView = () => (
 const Camera=(props)=>{
   const navigation = useNavigation()
 
+  //shows the picture that was just taken
   const CapturedView = () => (
       <ImageBackground
         source={{ uri: props.imageData.uri }}
@@ -44,6 +47,7 @@ const Camera=(props)=>{
       </ImageBackground>
   )
 
+  //camera screen
   const CameraView = () => (
     <RNCamera
       style={styles.preview}
@@ -88,6 +92,7 @@ const Camera=(props)=>{
     props.setImagePath(picPath);
   };
 
+  //text extraction w/ google cloud vision api
   const handleExtract = async function(localPath){
     const processed = await vision().cloudDocumentTextRecognizerProcessImage(props.imagePath)
     const extractedText = processed.text

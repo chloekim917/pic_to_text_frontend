@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 
+//fake login
 function LoginScreen({ navigation }) {
   return (
+    //prevents keyboard from blocking some parts of the screen
     <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS == "ios" ? "padding" : "height"}>
     <View style={styles.container}>
         <Text style={styles.logo}>TransPict</Text>

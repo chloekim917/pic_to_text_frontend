@@ -10,6 +10,7 @@ import { selectNoteAction} from '../actions'
 const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath, setExtracted, selectNotebook, selectNote,navigation})=>{
     const [title, setTitle] = useState('')
 
+    //all fetches use nrok because of physical device in demo
     const handleSubmit=()=>{
       fetch('http://54aba409e9cf.ngrok.io/api/v1/notes',{
         method: 'POST',
@@ -34,6 +35,7 @@ const NewNotePage=({extracted, notebooks, currentNotebook, imageData, imagePath,
     }
 
     return (
+      //prevents keyboard from blocking some parts of the screen
       <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >

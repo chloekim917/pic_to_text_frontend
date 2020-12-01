@@ -11,11 +11,11 @@ const NotesPage=(props)=>{
   useEffect(() => {
     props.fetchNotes()
   }, [])
+
   const thisNotebook = (props.notebooks[props.currentNotebook-1].notebook_name)
 
     return(
       <View style={styles.contianer}>
-
         <View style={styles.container0}></View>
         <View style={styles.container1}>
           <TouchableHighlight onPress={()=>navigation.navigate('NotebooksPage')} >

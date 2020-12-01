@@ -13,7 +13,9 @@ const NoteTranslatePage = (props)=>{
   const [content, setContent] = useState('')
   const [language, setLanguage] = useState('')
   const apiKey = Config.GOOGLE_API_KEY
-
+  
+  //all fetches use nrok because of physical device in demo
+  //used hook instead of redux because this state will only be on this page
     useEffect(() => {
         fetch(`http://54aba409e9cf.ngrok.io/api/v1/notes/${props.currentNote}`)
         .then(resp => resp.json())
@@ -23,6 +25,8 @@ const NoteTranslatePage = (props)=>{
         })
     }, [])
 
+    //all fetches use nrok because of physical device in demo
+    //no redux for POSTs
     const handleTranslate=()=>{
         fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
         method: 'POST',
@@ -43,6 +47,8 @@ const NoteTranslatePage = (props)=>{
         })
     }
 
+    //all fetches use nrok because of physical device in demo
+    //no redux for PATCHs
     const handleSubmit=()=>{
         fetch(`http://54aba409e9cf.ngrok.io/api/v1/notes/${props.currentNote}`,{
           method: 'PATCH',
@@ -63,6 +69,7 @@ const NoteTranslatePage = (props)=>{
         )
       }
 
+      //can add almost any language but just used some of the most frequently used languages for now for convenience
     return (
       <View style={styles.container}>
         <ScrollView style={{height:500}}>

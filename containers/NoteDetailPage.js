@@ -8,6 +8,8 @@ const NoteDetailPage = (props)=>{
   const navigation = useNavigation()
   const thisNote = props.notes.find(note=>note.id===props.currentNote)
 
+  //all fetches use nrok because of physical device in demo
+  //no redux for DELETEs
   const handleDelete=()=>{
     fetch(`http://54aba409e9cf.ngrok.io/api/v1/notes/${props.currentNote}`,{
       method: 'DELETE',

@@ -19,6 +19,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 const Stack = createStackNavigator();
 
+
+//maybe try different navigator later
 function App() {
   return (
     <Provider store={store}>

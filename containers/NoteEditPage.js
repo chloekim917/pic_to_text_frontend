@@ -11,6 +11,8 @@ const NoteEditPage = (props)=>{
   const [content, setContent] = useState(thisNote.content)
   const [translated, setTranslated] = useState(thisNote.translated)
 
+  //all fetches use nrok because of physical device in demo
+  //no redux for POSTs
   const handleSubmit=()=>{
     fetch(`http://54aba409e9cf.ngrok.io/api/v1/notes/${props.currentNote}`,{
       method: 'PATCH',

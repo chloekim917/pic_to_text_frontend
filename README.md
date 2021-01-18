@@ -9,10 +9,7 @@ https://img.shields.io/appveyor/build/chloekim917/pic-to-text-frontend
 Include logo/demo screenshot etc.
 
 ## Tech/framework used
-Ex. -
-
-<b>Built with</b>
-- [Electron](https://electron.atom.io)
+-----
 
 ## Features
 What makes your project stand out?

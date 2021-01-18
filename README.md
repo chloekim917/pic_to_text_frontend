@@ -6,7 +6,9 @@ TransPict is a mobile picture to text converter/language translator
 https://img.shields.io/appveyor/build/chloekim917/pic-to-text-frontend
 
 ## Screenshots
-Include logo/demo screenshot etc.
+
+## Demo
+https://www.youtube.com/watch?v=H7eo_iIBLhE&feature=youtu.be&ab_channel=SeoyoungChloeKim
 
 ## Tech/framework used
 -----

@@ -26,9 +26,6 @@ Provide step by step series of examples and explanations about how to get a deve
 
 Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
 
-## Tests
-Describe and show how to run the tests with code examples.
-
 ## How to use?
 If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
 
